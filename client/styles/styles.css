@@ -2,5 +2,6 @@
     margin: 0;
     overflow: hidden;
     image-rendering: pixelated;
+    background-color: #333;
 }
 
