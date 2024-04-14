@@ -5,6 +5,7 @@ import { Listeners } from "./listeners.js";
 import { MapList } from "./maps/mapList.js";
 import { MapManager2 } from "./maps/mapManager.js";
 import { EntityManager } from "./entityManager.js";
+import { QuestionManager } from "./questionmanager.js";
 
 export class Client {
     init  = async () => {
@@ -16,6 +17,7 @@ export class Client {
         this.mapList = new MapList();
         this.mapManager = new MapManager2();
         this.audioManager = new AudioManager();
+        this.questionManager = new QuestionManager();
         
         this.futileProFont = new FontFace("FutilePro", "url(./resources/fonts/FutilePro.ttf)");
         this.compassPro = new FontFace("CompassPro", "url(./resources/fonts/CompassPro.ttf)")
@@ -68,6 +70,7 @@ export class Client {
         
         this.canvas.ctx.textBaseline = 'top';
         this.canvas.ctx.fillStyle='blue'
+        this.canvas.ctx.font = "24px FutilePro"
         this.canvas.ctx.fillText(this.fps, 32, 8)
 
         if(this.player)

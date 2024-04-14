@@ -8,7 +8,7 @@ class Button extends Element{
         this.text=text;
         this.clickMethod = clickMethod;
         this.backgroundColor = backgroundColor || 'black'
-        this.fontColor = fontColor || '#black'
+        this.fontColor = fontColor || 'black'
         this.offset = offset || 0
         this.init();    
     }
@@ -26,6 +26,7 @@ class Button extends Element{
         //aligns to text to the center 
         if(this.image)
         ctx.drawImage(this.image,this.x,this.y,this.width,this.height)
+        ctx.fillStyle= this.fontColor;
         ctx.fillText(this.text, this.x+this.width/2+this.offset, this.y+this.height/2); 
         
     }
