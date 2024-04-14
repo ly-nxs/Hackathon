@@ -10,6 +10,8 @@ export class Player {
         this.xVel = 0
         this.lastKeyUsed = "w";
 
+        this.battle = false;
+
         this.hitbox = {
             x: 0,
             y: 0,
@@ -185,11 +187,20 @@ export class Player {
 
     onKeyDown = (e) => {
         
-
         if(e.key === "Escape"){
             location.reload();
         }
+
+        
+        if(this.battle){
+            this.keys.w = false;
+            this.keys.a = false;
+            this.keys.s = false;
+            this.keys.d = false;
+            return;
+        }
         this.keys[e.key] = true;
+        
         //console.log(e.key + this.keys[e.key])
     };
 

@@ -11,8 +11,10 @@ export class Trainer extends NPC {
         this.health = health;
         this.exp = exp;
         this.init();
-        this.seePlayer = false;
-        this.attentionDrawn = false;
+
+        this.canBattle = true //set to false after trainer defeated
+        this.battle = false; //determines if battle has started or not
+        this.attentionDrawn = false; //determines if trainer has seen a player
         this.range = {
             x: this.x +30,
             y: this.y +16,
@@ -27,18 +29,32 @@ export class Trainer extends NPC {
     }
 
     startBattle = () => {
-        if(this.seePlayer) {
-            clientInstance.canvas.ctx.drawImage(this.attentionIcon, this.x, this.y-32,16,16)
-            
-        }
+        if(this.battle) return;
+        clientInstance.player.battle = true;
+
+        setTimeout(() => {
+            console.log("startbattle")
+            clientInstance.uiManager.setScreen(new BattleScreeen());
+            this.battle = true;
+            this.range.width = 0;
+            this.range.height = 0 ;
+            setTimeout(() => {
+                this.endBattle();
+                clientInstance.player.battle = false;
+                this.battle = false;
+            },2000)
+        },200)
+        
     }
     
     endBattle = () => {
         clientInstance.uiManager.setScreen(new Overlay())
+        this.battle = false;
     }
 
     update = () => {
         if(!clientInstance.player) return
+        if(this.battle) return;
         if (clientInstance.tick % 5 == 0) {
             if(this.moving)
             this.xFrame = (this.xFrame + 1) % 4;
@@ -56,7 +72,8 @@ export class Trainer extends NPC {
         this.range.x = this.x + +30;
         this.range.y = this.y + +16;
 
-        
+        if(this.attentionDrawn)
+        this.startBattle();
     }
 
     checkForPlayer = () => {
@@ -71,6 +88,7 @@ export class Trainer extends NPC {
     }
 
     draw =  () => {
+        if(this.battle) return;
         this.checkForPlayer();
         if(this.attentionDrawn) {
             clientInstance.canvas.ctx.drawImage(this.attentionIcon,this.x+clientInstance.player.getCenterX()+32,this.y+clientInstance.player.getCenterY() - 25,32,32)
