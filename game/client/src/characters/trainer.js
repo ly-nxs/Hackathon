@@ -31,22 +31,13 @@ export class Trainer extends NPC {
     startBattle = () => {
         if(this.battle) return;
         clientInstance.player.battle = true;
-
-        setTimeout(() => {
-            console.log("startbattle")
-            clientInstance.uiManager.setScreen(new BattleScreeen());
-            this.battle = true;
-            this.range.width = 0;
-            this.range.height = 0 ;
-            setTimeout(() => {
-                this.endBattle();
-                clientInstance.player.battle = false;
-                this.battle = false;
-            },2000)
-        },200)
-        
+        console.log("startbattle")
+        clientInstance.uiManager.setScreen(new BattleScreeen());
+        this.battle = true;
+        this.range.width = 0;
+        this.range.height = 0;
     }
-    
+
     endBattle = () => {
         clientInstance.uiManager.setScreen(new Overlay())
         this.battle = false;

@@ -30,4 +30,5 @@ server.on('error', (err) => {
 
 server.listen(8080, () => {
   console.log('started on 8080');
+  console.log('fdsa');
 });
