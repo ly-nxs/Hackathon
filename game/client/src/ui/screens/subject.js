@@ -20,7 +20,7 @@ export class SubjectScreen extends Screen {
             })
             const playerId = response.data.playerId;
             localStorage.setItem('playerId', playerId);
-            this.addElement(new TextElement("Your Subject is Math! You may now continue",0,window.innerHeight, 100,100,'blue'))
+            this.addElement(new TextElement("Your Subject is Math! You may now continue",0,window.innerHeight, 100,1000,'blue'))
 
         }
 
@@ -34,7 +34,8 @@ export class SubjectScreen extends Screen {
             })
             const playerId = response.data.playerId;
             localStorage.setItem('playerId', playerId);
-            window.alert("You have successfully set your subject to science. You can now play the game.")
+            this.addElement(new TextElement("Your Subject is Science! You may now continue",0,window.innerHeight, 100,1000,'blue'))
+
         }
 
         let addPhysics = async () => {
@@ -47,7 +48,8 @@ export class SubjectScreen extends Screen {
             })
             const playerId = response.data.playerId;
             localStorage.setItem('playerId', playerId);
-            window.alert("You have successfully set your subject to physics. You can now play the game.")
+            this.addElement(new TextElement("Your Subject is Physics! You may now continue",0,window.innerHeight, 100,1000,'blue'))
+
         }
         let back = () => {
             clientInstance.uiManager.setScreen(new MainMenu())
