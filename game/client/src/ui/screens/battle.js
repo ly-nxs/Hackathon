@@ -1,12 +1,13 @@
 import Screen from "./screen.js"
 import Button from "../elements/button.js"
-import { clientInstance } from "../../main.js";
-import { Overlay } from "../../ui/screens/overlay.js";
 import { trainer } from "../../maps/mapList.js";
+import { player } from "../../maps/mapManager.js";
 
 export class BattleScreeen extends Screen {
     init = () => {
         let click = async () => {
+            let enemyHealth = trainer.health;
+            let playerHealth = player.health;
             const playerId = localStorage.getItem("playerId");
             const response = await axios.post("https://jacob5257.com/api/getQuestion", {
                 playerId: playerId
@@ -24,19 +25,21 @@ export class BattleScreeen extends Screen {
             });
             const streak = getStreak.data.streak;
             if (result) {
-                const res = "Correct! Streak: " + streak + "\n";
-                if (streak >= 3) { 
-                    window.alert(res + "Congratulations! You've answered 3 questions correctly. You win!");
-                    const response3 = await axios.post("https://jacob5257.com/api/resetStreak", {
-                        playerId: playerId
-                    });
-                    //clientInstance.uiManager.setScreen(new Overlay());
+                enemyHealth -= streak;
+                if (enemyHealth <= 0) { 
+                    window.alert("Congratulations! You won!");
                     trainer.endBattle();
-                } else {
-                    window.alert(res + "You need to answer " + (3 - streak) + " more questions correctly to win.");
+                    player.battle = false;
                 }
+                else window.alert("Correct!\nEnemy's health is now: " + (enemyHealth > 0 ? enemyHealth : 0));
             } else {
-                window.alert("Incorrect! Your streak has been reset to 0.");
+                playerHealth -= Math.floor(Math.random() * 10);
+                window.alert("Incorrect! Your streak has been reset to 0 and your health is now " + playerHealth > 0 ? playerHealth : 0);
+                if (playerHealth <= 0) {
+                    window.alert("You lost! Better luck next time!");
+                    localStorage.removeItem("playerId");
+                    window.location.href = "https://hackathon.jacob5257.com";
+                }
             }
         }
         this.addElement(new Button("Answer Question", click,250,250,250,250));

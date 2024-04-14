@@ -68,10 +68,7 @@ export class NPC {
         this.y += this.yVel
     }
 
-    draw = () => {
-        // clientInstance.canvas.ctx.strokeStyle = "black"
-        // clientInstance.canvas.ctx.strokeRect(this.x+clientInstance.player.getCenterX()+32,this.y+clientInstance.player.getCenterY()+16,this.boundingWidth,this.boundingHeight)
-        
+    draw = () => {        
         if(this.image)
         this.image.draw(this.xFrame*64,this.yFrame,64,64,this.x+clientInstance.player.getCenterX()+16,this.y+clientInstance.player.getCenterY(),64,64)
     }

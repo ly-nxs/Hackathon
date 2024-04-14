@@ -29,7 +29,7 @@ export class Trainer extends NPC {
     }
 
     startBattle = () => {
-        if(this.battle) return;
+        if(this.battle || !this.canBattle) return;
         clientInstance.player.battle = true;
         console.log("startbattle")
         this.battle = true;
@@ -41,6 +41,7 @@ export class Trainer extends NPC {
     endBattle = () => {
         clientInstance.uiManager.setScreen(new Overlay())
         this.battle = false;
+        this.canBattle = false;
     }
 
     update = () => {
@@ -68,6 +69,7 @@ export class Trainer extends NPC {
     }
 
     checkForPlayer = () => {
+        if (!this.canBattle) return;
         //checks if player hitbox is inside the trainer attention box
         if((this.range.x >= clientInstance.player.hitbox.x && this.range.x <= clientInstance.player.hitbox.x+clientInstance.player.hitbox.width)&&
         (this.range.y >= -clientInstance.player.hitbox.y && this.range.y <= clientInstance.player.hitbox.y + clientInstance.player.hitbox.height)) {

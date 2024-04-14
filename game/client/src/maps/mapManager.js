@@ -1,13 +1,10 @@
 import { clientInstance } from "../main.js";
 import { Player } from "../player.js";
-import Util from "../util.js";
 import { GameMap } from "./map.js";
-import { createMap } from "./mapv3.js";
-import { drawMap, drawSky, init } from "./mapv4.js";
+
+export let player;
 
 export class MapManager2 {
-
-
   constructor() {
     this.currentMap = null;
     this.currentNpcs = null;
@@ -44,8 +41,8 @@ export class MapManager2 {
     
     this.currentMap = await new GameMap(name, coords, npcs);
     await this.currentMap.initTileMap(name);
-    if(!clientInstance.player)
-    clientInstance.player = await new Player();
+    if(!clientInstance.player) clientInstance.player = new Player();
+    player = clientInstance.player;
     clientInstance.player.character.updatePosition(xLoad*32 || 19*32, yLoad*32 || 17*32);
     console.log(npcs)
     // clientInstance.player = await new Player();
