@@ -7,6 +7,7 @@ export class BattleScreeen extends Screen {
     init = () => {
         let click = async () => {
             let enemyHealth = trainer.health;
+            let playerHealth = player.health;
             const playerId = localStorage.getItem("playerId");
             const response = await axios.post("https://jacob5257.com/api/getQuestion", {
                 playerId: playerId
@@ -32,7 +33,13 @@ export class BattleScreeen extends Screen {
                 }
                 else window.alert("Correct!\nEnemy's health is now: " + (enemyHealth > 0 ? enemyHealth : 0));
             } else {
-                window.alert("Incorrect! Your streak has been reset to 0.");
+                playerHealth -= Math.floor(Math.random() * 10);
+                window.alert("Incorrect! Your streak has been reset to 0 and your health is now " + playerHealth > 0 ? playerHealth : 0);
+                if (playerHealth <= 0) {
+                    window.alert("You lost! Better luck next time!");
+                    localStorage.removeItem("playerId");
+                    window.location.href = "https://hackathon.jacob5257.com";
+                }
             }
         }
         this.addElement(new Button("Answer Question", click,250,250,250,250));

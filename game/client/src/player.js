@@ -9,6 +9,7 @@ export class Player {
         this.yVel = 0
         this.xVel = 0
         this.lastKeyUsed = "w";
+        this.health = 100;
 
         this.battle = false;
 
