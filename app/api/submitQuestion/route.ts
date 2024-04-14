@@ -29,7 +29,7 @@ export async function POST(req: Request){
         const answers = fs.readFileSync(`./app/questions/${category}-answers.txt`, 'utf8').split('\n');
         const correctAnswer = answers[questionId];
         let newStreak = 0;
-        if (answer === correctAnswer) {
+        if (answer.toLowerCase() === correctAnswer) {
             newStreak = currentStreak + 1;
         }
 
