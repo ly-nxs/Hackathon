@@ -17,7 +17,7 @@ export async function POST(req: Request){
             });
         });
 
-        return NextResponse.json({ valid: !row });
+        return NextResponse.json({ valid: row });
     }
     catch (error) {
         console.log("API ERROR", error);

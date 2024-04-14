@@ -15,7 +15,7 @@ export class MainMenu extends Screen {
                 window.alert("Please select a subject before playing the game.");
                 return;
             }
-            const validityCheck = await axios.post("https://jacob5257.com/api/validatePlayer", {
+            const validityCheck = await axios.post("https://jacob5257.com/api/checkId", {
                 playerId: localStorage.getItem("playerId")
             });
             if (!validityCheck.data.valid) {
