@@ -4,7 +4,6 @@ import { ImageElement } from "../elements/imageElement.js";
 import { TextElement } from "../elements/textElement.js";
 import Screen from "./screen.js";
 import { clientInstance } from "../../main.js";
-import { Overlay } from "./overlay.js";
 import { MainMenu } from "./mainmenu.js";
 
 export class SubjectScreen extends Screen {
@@ -21,6 +20,7 @@ export class SubjectScreen extends Screen {
             })
             const playerId = response.data.playerId;
             localStorage.setItem('playerId', playerId);
+            window.alert("You have successfully set your subject to math. You can now play the game.")
         }
 
         let addScience = async () => {
@@ -33,6 +33,7 @@ export class SubjectScreen extends Screen {
             })
             const playerId = response.data.playerId;
             localStorage.setItem('playerId', playerId);
+            window.alert("You have successfully set your subject to science. You can now play the game.")
         }
 
         let addPhysics = async () => {
@@ -45,6 +46,7 @@ export class SubjectScreen extends Screen {
             })
             const playerId = response.data.playerId;
             localStorage.setItem('playerId', playerId);
+            window.alert("You have successfully set your subject to physics. You can now play the game.")
         }
         let back = () => {
             clientInstance.uiManager.setScreen(new MainMenu())
