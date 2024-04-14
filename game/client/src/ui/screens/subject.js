@@ -20,7 +20,8 @@ export class SubjectScreen extends Screen {
             })
             const playerId = response.data.playerId;
             localStorage.setItem('playerId', playerId);
-            window.alert("You have successfully set your subject to math. You can now play the game.")
+            this.addElement(new TextElement("Your Subject is Math! You may now continue",0,window.innerHeight, 100,100,'blue'))
+
         }
 
         let addScience = async () => {
