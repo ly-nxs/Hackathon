@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tileset version="1.10" tiledversion="1.10.2" name="caving" tilewidth="32" tileheight="32" tilecount="3744" columns="8">
+ <image source="../../../Pixel Art/Pokemon SpriteSheets/Heart Gold Soul Silver/caving.png" width="256" height="14976"/>
+</tileset>
