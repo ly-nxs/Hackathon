@@ -1,3 +1,20 @@
-What is 1 + 1?
-What is 2 + 2?
-What is 3 + 3?
+What is the value of pi to 5 decimal places?
+What is the value of the square root of 64?
+Solve for x: 2x + 5 = 15.
+What is the sum of the interior angles of a triangle?
+Solve for y: 3y - 7 = 14.
+What is the value of sin(π/2)?
+Solve for x: 3(x - 4) = 15.
+What is the smallest prime number?
+Which shape's area is solved by pi * r * r?
+Solve for y: 2y + 8 = 20.
+What is the sum of the interior angles of a quadrilateral?
+What is the value of tan(π/4)?
+What is the value of log10(100)?
+Find the positive answer to the following: x² + 5x - 6 = 0.
+What is the value of sec(0)?
+Solve for y: (4y)/3 = 8.
+What is the value of cot(π/3) squared?
+Solve for the largest value of x: |2x - 3| = 9.
+What is the value of csc(π/6)?
+Solve for y: 5(y + 2) = 30.

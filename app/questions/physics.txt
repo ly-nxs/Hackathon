@@ -1,2 +1,33 @@
-Force = ?
-Watts = ?
+___________ is the measure of the gravitational force exerted on an object.
+The rate of change of velocity is called ___________.
+The energy stored in an object due to its position is called ___________ energy.
+According to Newton's third law of motion, for every action, there is an equal and opposite ___________.
+The SI unit of force is ___________ (no abbreviations).
+___________ is a scalar quantity that represents the rate of change of position.
+The force that opposes the motion of objects through a fluid is called ___________.
+The resistance of an object to changes in its state of motion is called ___________.
+The SI unit of energy is the ___________ (no abbreviations).
+___________ is the force per unit area exerted on an object's surface.
+The law that states that the total energy of an isolated system remains constant over time is called the law of ___________.
+The product of an object's mass and velocity is called its ___________.
+The acceleration due to gravity near the surface of the Earth is approximately ___________ m/s² (to one decimal place).
+The energy possessed by a body due to its motion is called ___________ energy.
+According to Newton's second law of motion, force is equal to ___________ times acceleration.
+The bending of light as it passes from one medium to another is called ___________.
+The energy possessed by a body by virtue of its temperature is called ___________ energy.
+The time rate of doing work is called ___________.
+___________ is a measure of disorder or randomness in a system.
+The resistance of a fluid to flow is called ___________.
+The force of attraction between any two objects with mass is called the ___________ force.
+The SI unit of power is the ___________ (no abbreviations).
+A car accelerates from rest at a rate of 2 m/s² for 10 seconds. What is its final velocity? Do not include units.
+If an object with a mass of 5 kg experiences a force of 10 N, what is its acceleration? Do not include units.
+A block with a weight of 50 N is pulled along a frictionless surface with a force of 20 N. What is its acceleration? Do not include units.
+Calculate the kinetic energy of an object with a mass of 10 kg moving at a velocity of 5 m/s. Do not include units.
+A spring with a spring constant of 200 N/m is compressed by 0.1 meters. What is the potential energy stored in the spring? Do not include units.
+What is the gravitational potential energy of a 2 kg object placed 5 meters above the ground? Do not include units.
+A force of 30 N is applied to push a box across a floor for 5 meters. How much work is done? Do not include units.
+A 50 kg object moving at 10 m/s collides with a stationary object of 20 kg. If they stick together after the collision, what is their final velocity? Do not include units.
+If a car engine produces 1500 watts of power, how much work can it do in 10 seconds? Do not include units.
+If a block slides 5 meters along a frictionless surface and comes to rest, how much work is done by friction? Do not include units.
+A ball is thrown vertically upwards with a velocity of 20 m/s. How high does it go before coming to a stop? Do not include units.

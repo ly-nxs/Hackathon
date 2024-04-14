@@ -14,6 +14,7 @@ export class BattleScreeen extends Screen {
             })
             const question = response.data.question;
             const answer = window.prompt(question);
+            console.log(answer);
             const response2 = await axios.post("https://jacob5257.com/api/submitQuestion", {
                 playerId: playerId,
                 questionId: response.data.questionId,
@@ -34,7 +35,7 @@ export class BattleScreeen extends Screen {
                 else window.alert("Correct!\nEnemy's health is now: " + (enemyHealth > 0 ? enemyHealth : 0));
             } else {
                 playerHealth -= Math.floor(Math.random() * 10);
-                window.alert("Incorrect! Your streak has been reset to 0 and your health is now " + playerHealth > 0 ? playerHealth : 0);
+                window.alert("Incorrect! The answer was " + response2.data.correctAnswer + ".\nYour streak has been reset to 0 and your health is now " + (playerHealth > 0 ? playerHealth : 0));
                 if (playerHealth <= 0) {
                     window.alert("You lost! Better luck next time!");
                     localStorage.removeItem("playerId");
