@@ -6,7 +6,7 @@ export async function POST(req: Request){
         const body = await req.json();
         const playerId = body.playerId;
         const questionId = body.questionId;
-        const answer = body.answer;
+        const answer = body.answer.toLowerCase();
 
         // get the player's category and current streak from the database
         const row = await new Promise((resolve, reject) => {
@@ -26,10 +26,11 @@ export async function POST(req: Request){
         const category: string = (row as { category: string }).category;
         const currentStreak: number = (row as { streak: number }).streak;
         const fs = require('fs');
-        const answers = fs.readFileSync(`./app/questions/${category}-answers.txt`, 'utf8').split('\n');
+        const answers = fs.readFileSync(`./app/questions/${category}-answers.txt`, 'utf8').toLowerCase().split('\n');
         const correctAnswer = answers[questionId];
         let newStreak = 0;
-        if (answer.toLowerCase() === correctAnswer) {
+        console.log(answer, correctAnswer);
+        if (answer == correctAnswer) {
             newStreak = currentStreak + 1;
         }
 
@@ -44,7 +45,7 @@ export async function POST(req: Request){
             });
         });
 
-        return NextResponse.json({ correct: answer === correctAnswer, streak: newStreak });
+        return NextResponse.json({ correct: answer == correctAnswer, streak: newStreak, correctAnswer: correctAnswer });
     }
     catch (error) {
         console.log("API ERROR", error);
