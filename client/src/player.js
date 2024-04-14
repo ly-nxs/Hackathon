@@ -1,4 +1,5 @@
 import { Character } from "./characters/character.js";
+import { NPC } from "./characters/npc.js";
 import { clientInstance } from "./main.js";
 
 export class Player {
@@ -57,7 +58,6 @@ export class Player {
         const { x, y } = loc;
         
         clientInstance.mapList.getMap(clientInstance.mapManager.currentMap.name).forEach(teleport => {
-            console.log("hello")
             const coords = teleport.coords;
             //console.log(teleport)
             if(x == coords[0] && y == coords[1]) {
@@ -146,7 +146,7 @@ export class Player {
         // this.character.draw(x, y);
         this.character.draw(x, y,window.innerWidth/2-32,window.innerHeight/2-32);
         const ctx = clientInstance.canvas.ctx;
-        
+        clientInstance.canvas.ctx.strokeRect(this.hitbox.x,this.hitbox.y,this.hitbox.width,this.hitbox.height)
         clientInstance.canvas.ctx.restore();
     };
 
@@ -180,10 +180,12 @@ export class Player {
     
 
     onClick = (e) => {
-       
+    //    clientInstance.entityManager.addNPC(new NPC("Billy.png",250,250))
     };
 
     onKeyDown = (e) => {
+        
+
         if(e.key === "Escape"){
             location.reload();
         }

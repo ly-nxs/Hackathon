@@ -1,3 +1,5 @@
+import { NPC } from "../characters/npc.js";
+import { Trainer } from "../characters/trainer.js";
 import { clientInstance } from "../main.js";
 import { GameMap } from "./map.js";
 
@@ -5,6 +7,7 @@ export class MapList {
     constructor() {
         this.maps = new Map();
         this.npcs = new Map()
+        this.trainers = new Map();
         this.addAllMaps();
     }
     
@@ -22,6 +25,14 @@ export class MapList {
     
     getNpcs = (name) => {
         return this.npcs.get(name)
+    }
+
+    addTrainer = (name,data) => {
+        this.trainers.set(name,data)
+    }
+    
+    getTrainer = (name) => {
+        return this.trainers.get(name)
     }
 
     addAllMaps = () => {
@@ -61,7 +72,9 @@ export class MapList {
         // this.addMap("bossroomsmallfit", [{next:"ruinsmallfit", coords:[16,19,30,2]}])
         // // console.log(this.maps, "MAPS")
 
-        // this.addNpcs("startingarea", [{npc: new NPC("mustache", ["woodsword","bow"], "Go inside the house my friend has stuff for you", {x:520,y:480}, 150)}])
+        // this.addNpcs("startingarea", [{npc: new NPC("Billy.png", 448,528)}])
+        this.addNpcs("startingarea", [{npc: new Trainer("Billy.png",448,528,100,100,{x:448+32, y:528+16})}])
+        
         // this.addNpcs("startinghouse", [{npc: new NPC("Billy", ["woodsword", "woodarmor"], "These will help you become a hero", {x:448-16,y:320}, 150)}])
         // this.addNpcs("generichouse", [{npc: new NPC("Shop", ["small", "big"], "Take these they will help you", {x:320-16,y:7*32}, 90) }])
         // this.addNpcs("town2house2", [{npc:new NPC("96", ["ironarmor", "ironsword"], "If you're adventuring further take these",{x:4*32-16,y:6*32}, 140)}])

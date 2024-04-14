@@ -40,6 +40,7 @@ export class MapManager2 {
     const coords = clientInstance.mapList.getMap(name).coords;
 
     const npcs = clientInstance.mapList.getNpcs(name)
+    const trainer = clientInstance.mapList.getTrainer(name)
     
     this.currentMap = await new GameMap(name, coords, npcs);
     await this.currentMap.initTileMap(name);
@@ -52,6 +53,11 @@ export class MapManager2 {
     for(const npc of npcs) {
       clientInstance.entityManager.addNPC(npc.npc)
 
+    }
+    if(trainer){
+      for(const trainer of trainers){
+        clientInstance.entityManager.addTrainer(trainer.trainer)
+      }
     }
     
   }
