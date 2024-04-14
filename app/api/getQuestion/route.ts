@@ -1,30 +1,40 @@
 import { NextResponse } from "next/server";
-import { Database } from "sqlite3";
-
-const db = new Database('./players.db');
+import { db } from "../../dbSetup";
+import fs from 'fs';
+import path from 'path';
 
 export async function POST(req: Request){
     try {
         const body = await req.json();
         const playerId = body.playerId;
+        let question = "";
+        let questionId = -1;
+
         // get the player's name and category from the database
-        db.get(`SELECT name, category FROM players WHERE id = ?`, [playerId], (err, row: { name: string, category: string }) => {
-            if (err) {
-                return console.error(err.message);
-            }
-            if (row) {
-                const category = row.category;
-                // go to <category>.txt and get a random question
-                const fs = require('fs');
-                const questions = fs.readFileSync(`./questions/${category}.txt`, 'utf8').split('\n');
-                const randomIndex = Math.floor(Math.random() * questions.length);
-                const question = questions[randomIndex];
-                return NextResponse.json({ question: question, questionId: randomIndex });
-            }
-            else {
-                return NextResponse.json({ error: "Player not found" }, { status: 404 });
-            }
+        const row = await new Promise((resolve, reject) => {
+            db.get(`SELECT name, category FROM players WHERE id = ?`, [playerId], (err, row) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(row);
+                }
+            });
         });
+
+        if (!row) {
+            return NextResponse.json({ error: "Player data does not exist" }, { status: 404 });
+        }
+
+        const category: string = (row as { category: string }).category;
+        // go to <category>.txt and get a random question
+        const questions = fs.readFileSync(`./app/questions/${category}.txt`, 'utf8').split('\n');
+        console.log(questions);
+        questionId = Math.floor(Math.random() * questions.length);
+        question = questions[questionId];
+        console.log(question)
+        console.log(questionId)
+
+        return NextResponse.json({ question: question, questionId: questionId }, { status: 200 });
     }
     catch (error) {
         console.log("API ERROR", error);

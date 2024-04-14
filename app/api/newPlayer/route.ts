@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
-import { Database } from "sqlite3";
-
-const db = new Database('./players.db');
+import { db } from "../../dbSetup";
 
 export async function POST(req: Request){
     try {
@@ -11,23 +9,33 @@ export async function POST(req: Request){
 
         // Generate a new player ID
         let playerId = Math.floor(Math.random() * 1000000);
+
         // check if the player ID already exists
-        db.get(`SELECT id FROM players WHERE id = ?`, [playerId], (err, row) => {
-            if (err) {
-                return console.error(err.message);
-            }
-            if (row) {
-                // If the player ID already exists, generate a new one
-                playerId = Math.floor(Math.random() * 1000000);
-            }
+        const row = await new Promise((resolve, reject) => {
+            db.get(`SELECT id FROM players WHERE id = ?`, [playerId], (err, row) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(row);
+                }
+            });
         });
 
+        if (row) {
+            // If the player ID already exists, generate a new one
+            playerId = Math.floor(Math.random() * 1000000);
+        }
+
         // Insert the new player into the SQLite database
-        db.run(`INSERT INTO players(id, name, category) VALUES(?, ?, ?)`, [playerId, name, category], function(err) {
-            if (err) {
-                return console.log(err.message);
-            }
-            console.log(`Player added to database ${this.lastID}`);
+        await new Promise((resolve, reject) => {
+            db.run(`INSERT INTO players(id, name, category) VALUES(?, ?, ?)`, [playerId, name, category], function(err) {
+                if (err) {
+                    reject(err);
+                } else {
+                    console.log(`Player added to database ${this.lastID}`);
+                    resolve(this.lastID);
+                }
+            });
         });
 
         // Return the new player ID
