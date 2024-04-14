@@ -20,7 +20,7 @@ export class SubjectScreen extends Screen {
             })
             const playerId = response.data.playerId;
             localStorage.setItem('playerId', playerId);
-            this.addElement(new TextElement("Your Subject is Math! You may now continue",0,window.innerHeight, 100,window.innerHeight/2,'blue'))
+            this.addElement(new TextElement("Your Subject is Math! You may now continue",0,window.innerHeight, window.innerHeight/2,100,'blue'))
 
         }
 
@@ -34,7 +34,7 @@ export class SubjectScreen extends Screen {
             })
             const playerId = response.data.playerId;
             localStorage.setItem('playerId', playerId);
-            this.addElement(new TextElement("Your Subject is Science! You may now continue",0,window.innerHeight, 100,window.innerHeight/2,'blue'))
+            this.addElement(new TextElement("Your Subject is Science! You may now continue",0,window.innerHeight,window.innerHeight/2,100,'blue'))
 
         }
 
@@ -48,7 +48,7 @@ export class SubjectScreen extends Screen {
             })
             const playerId = response.data.playerId;
             localStorage.setItem('playerId', playerId);
-            this.addElement(new TextElement("Your Subject is Physics! You may now continue",0,window.innerHeight, 100,window.innerHeight/2,'blue'))
+            this.addElement(new TextElement("Your Subject is Physics! You may now continue",0,window.innerHeight,window.innerHeight/2,100,'blue'))
 
         }
         let back = () => {
