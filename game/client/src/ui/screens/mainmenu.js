@@ -15,6 +15,13 @@ export class MainMenu extends Screen {
                 window.alert("Please select a subject before playing the game.");
                 return;
             }
+            const validityCheck = await axios.post("https://jacob5257.com/api/validatePlayer", {
+                playerId: localStorage.getItem("playerId")
+            });
+            if (!validityCheck.data.valid) {
+                window.alert("You do not have a valid game token. Select a subject again to continue.");
+                return;
+            }
             await clientInstance.mapManager.loadNewMap("startingarea");
             clientInstance.uiManager.setScreen(new Overlay())
             clientInstance.canvas.ctx.font = "30px FutilePro"
