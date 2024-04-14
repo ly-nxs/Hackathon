@@ -13,11 +13,15 @@ const server = http.createServer(app);
 
 const io = socketio(server);
 
+const playerIds = [];
+let i = 0;
 
 io.on('connection', (sock) => {
 console.log("someone connected")
 sock.emit('message',"hello!")
-
+playerIds[i] = i;  //IP adresses?  How to save progress, SQL?
+sock.emit('id',playerIds[i])
+i++;
 sock.on('key', (key) => {
 console.log(key)
 })
