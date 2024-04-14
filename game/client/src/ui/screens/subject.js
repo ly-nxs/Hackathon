@@ -12,15 +12,21 @@ export class SubjectScreen extends Screen {
     init = () => {
         console.log("subjects")
         let addMath = () => {
-            clientInstance.questionManager.math = !clientInstance.questionManager.math;
+            clientInstance.questionManager.math = true;
+            clientInstance.questionManager.physics = false;
+            clientInstance.questionManager.science = false;
             console.log(clientInstance.questionManager.math)
         }
         let addScience = () => {
-            clientInstance.questionManager.science = !clientInstance.questionManager.science;
+            clientInstance.questionManager.math = false;
+            clientInstance.questionManager.physics = false;
+            clientInstance.questionManager.science = true;
             console.log(clientInstance.questionManager.science)
         }
         let addPhysics = () => {
-            clientInstance.questionManager.physics = !clientInstance.questionManager.physics;
+            clientInstance.questionManager.math = false;
+            clientInstance.questionManager.physics = true;
+            clientInstance.questionManager.science = false;
             console.log(clientInstance.questionManager.physics)
         }
         let back = () => {
