@@ -37,3 +37,5 @@ next-env.d.ts
 
 # player db
 players.db
+
+node_modules

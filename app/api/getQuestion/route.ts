@@ -28,12 +28,8 @@ export async function POST(req: Request){
         const category: string = (row as { category: string }).category;
         // go to <category>.txt and get a random question
         const questions = fs.readFileSync(`./app/questions/${category}.txt`, 'utf8').split('\n');
-        console.log(questions);
         questionId = Math.floor(Math.random() * questions.length);
         question = questions[questionId];
-        console.log(question)
-        console.log(questionId)
-
         return NextResponse.json({ question: question, questionId: questionId }, { status: 200 });
     }
     catch (error) {
