@@ -11,23 +11,40 @@ export class SubjectScreen extends Screen {
 
     init = () => {
         console.log("subjects")
-        let addMath = () => {
+        let addMath = async () => {
             clientInstance.questionManager.math = true;
             clientInstance.questionManager.physics = false;
             clientInstance.questionManager.science = false;
-            console.log(clientInstance.questionManager.math)
+            const response = await axios.post("https://jacob5257.com/api/newPlayer", {
+                name: "player",
+                category: "math"
+            })
+            const playerId = response.data.playerId;
+            localStorage.setItem('playerId', playerId);
         }
-        let addScience = () => {
+
+        let addScience = async () => {
             clientInstance.questionManager.math = false;
             clientInstance.questionManager.physics = false;
             clientInstance.questionManager.science = true;
-            console.log(clientInstance.questionManager.science)
+            const response = await axios.post("https://jacob5257.com/api/newPlayer", {
+                name: "player",
+                category: "science"
+            })
+            const playerId = response.data.playerId;
+            localStorage.setItem('playerId', playerId);
         }
-        let addPhysics = () => {
+
+        let addPhysics = async () => {
             clientInstance.questionManager.math = false;
             clientInstance.questionManager.physics = true;
             clientInstance.questionManager.science = false;
-            console.log(clientInstance.questionManager.physics)
+            const response = await axios.post("https://jacob5257.com/api/newPlayer", {
+                name: "player",
+                category: "physics"
+            })
+            const playerId = response.data.playerId;
+            localStorage.setItem('playerId', playerId);
         }
         let back = () => {
             clientInstance.uiManager.setScreen(new MainMenu())
