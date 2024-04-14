@@ -5,7 +5,7 @@ import { BattleScreeen } from "../ui/screens/battle.js";
 import { Overlay } from "../ui/screens/overlay.js";
 
 export class Trainer extends NPC {
-    constructor(img,x,y, health, exp,range) {
+    constructor(img, x, y, health, exp) {
         super(img,x,y);
 
         this.health = health;
@@ -35,11 +35,10 @@ export class Trainer extends NPC {
         this.battle = true;
         this.range.width = 0;
         this.range.height = 0;
-        clientInstance.uiManager.setScreen(new BattleScreeen(this));
+        clientInstance.uiManager.setScreen(new BattleScreeen());
     }
 
     endBattle = () => {
-        console.log("endbattle")
         clientInstance.uiManager.setScreen(new Overlay())
         this.battle = false;
     }
@@ -79,7 +78,7 @@ export class Trainer extends NPC {
         }
     }
 
-    draw =  () => {
+    draw = () => {
         if(this.battle) return;
         this.checkForPlayer();
         if(this.attentionDrawn) {

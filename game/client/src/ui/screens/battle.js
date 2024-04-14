@@ -1,20 +1,17 @@
 import Screen from "./screen.js"
 import Button from "../elements/button.js"
+import { clientInstance } from "../../main.js";
+import { Overlay } from "../../ui/screens/overlay.js";
+import { trainer } from "../../maps/mapList.js";
 
 export class BattleScreeen extends Screen {
-
-    constructor(trainer) {
-        super();
-        this.trainer = trainer;
-    }
-
     init = () => {
         let click = async () => {
             const playerId = localStorage.getItem("playerId");
             const response = await axios.post("https://jacob5257.com/api/getQuestion", {
                 playerId: playerId
             })
-            const question = response.data.question; // assuming the question is in the 'question' property of the response
+            const question = response.data.question;
             const answer = window.prompt(question);
             const response2 = await axios.post("https://jacob5257.com/api/submitQuestion", {
                 playerId: playerId,
@@ -33,7 +30,8 @@ export class BattleScreeen extends Screen {
                     const response3 = await axios.post("https://jacob5257.com/api/resetStreak", {
                         playerId: playerId
                     });
-                    this.trainer.endBattle();
+                    //clientInstance.uiManager.setScreen(new Overlay());
+                    trainer.endBattle();
                 } else {
                     window.alert(res + "You need to answer " + (3 - streak) + " more questions correctly to win.");
                 }

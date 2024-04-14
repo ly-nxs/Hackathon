@@ -73,7 +73,7 @@ export class MapList {
         // // console.log(this.maps, "MAPS")
 
         // this.addNpcs("startingarea", [{npc: new NPC("Billy.png", 448,528)}])
-        this.addNpcs("startingarea", [{npc: new Trainer("Billy.png",448,528,100,100,{x:448+32, y:528+16})}])
+        this.addNpcs("startingarea", [{npc: trainer}])
         
         // this.addNpcs("startinghouse", [{npc: new NPC("Billy", ["woodsword", "woodarmor"], "These will help you become a hero", {x:448-16,y:320}, 150)}])
         // this.addNpcs("generichouse", [{npc: new NPC("Shop", ["small", "big"], "Take these they will help you", {x:320-16,y:7*32}, 90) }])
@@ -85,3 +85,5 @@ export class MapList {
     }
     
 }
+
+export const trainer = new Trainer("Billy.png",448,528,100,100,{x:448+32, y:528+16})

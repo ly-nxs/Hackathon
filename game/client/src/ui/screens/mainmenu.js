@@ -10,7 +10,6 @@ import { SubjectScreen } from "./subject.js";
 export class MainMenu extends Screen {
     
     init = async () => {
-        //this.addElement(new ImageElement("./resources/images/background.png", 0, 0, window.innerWidth, window.innerHeight))
         let loadMap = async (e) => {
             if (localStorage.getItem("playerId") == null) {
                 window.alert("Please select a subject before playing the game.");
