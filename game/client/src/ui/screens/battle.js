@@ -1,8 +1,7 @@
 import Screen from "./screen.js"
 import Button from "../elements/button.js"
-import { clientInstance } from "../../main.js";
-import { Overlay } from "../../ui/screens/overlay.js";
 import { trainer } from "../../maps/mapList.js";
+import { player } from "../../maps/mapManager.js";
 
 export class BattleScreeen extends Screen {
     init = () => {
@@ -32,6 +31,7 @@ export class BattleScreeen extends Screen {
                     });
                     //clientInstance.uiManager.setScreen(new Overlay());
                     trainer.endBattle();
+                    player.battle = false;
                 } else {
                     window.alert(res + "You need to answer " + (3 - streak) + " more questions correctly to win.");
                 }
