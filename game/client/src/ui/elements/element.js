@@ -1,4 +1,4 @@
-class Element {
+class Element { //Parent class of all UI elements
     constructor(x,y,width,height){
         this.x = x;
         this.y = y;

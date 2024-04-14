@@ -5,12 +5,14 @@ import { clientInstance } from "./main.js";
 export class Player {
 
     constructor() {
+        this.name = "player";
+        this.img = "ethan.png"
         this.frame = 0;
         this.yVel = 0
         this.xVel = 0
         this.lastKeyUsed = "w";
 
-        this.battle = false;
+        this.battle = false; //determines if player is in battle or not
 
         this.hitbox = {
             x: 0,
@@ -25,7 +27,8 @@ export class Player {
         // console.log(this.maps)
         this.init();
 
-
+        this.health = 100;
+        this.damage = 10;
     }
 
     init = () => {

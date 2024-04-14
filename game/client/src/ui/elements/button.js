@@ -37,6 +37,8 @@ class Button extends Element{
 
 
     onClick = (e) => {
+        clientInstance.audioManager.buttonClick.click.play();
+
         this.clickMethod(e);
     }
     

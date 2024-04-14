@@ -7,15 +7,15 @@ import { Overlay } from "../ui/screens/overlay.js";
 export class Trainer extends NPC {
     constructor(img,x,y, health, exp,range) {
         super(img,x,y);
-
+        this.name = img.substring(0,img.length-4) //sets trainer name
         this.health = health;
         this.exp = exp;
-        this.init();
+        this.init(); //loads sprite of trainer
 
         this.canBattle = true //set to false after trainer defeated
         this.battle = false; //determines if battle has started or not
         this.attentionDrawn = false; //determines if trainer has seen a player
-        this.range = {
+        this.range = {  //object determines the box in which trainer can see player
             x: this.x +30,
             y: this.y +16,
             width: 36,
@@ -29,12 +29,16 @@ export class Trainer extends NPC {
     }
 
     startBattle = () => {
-        if(this.battle) return;
+        if(this.battle || !this.canBattle) return; //stops if trainer cant battle anymore 
         clientInstance.player.battle = true;
+        this.canBattle = false;
+
+
 
         setTimeout(() => {
-            console.log("startbattle")
-            clientInstance.uiManager.setScreen(new BattleScreeen());
+            clientInstance.battleManager.startBattle();
+            clientInstance.battleManager.init(clientInstance.player.img,this.img)
+            // clientInstance.uiManager.setScreen(new BattleScreeen());
             this.battle = true;
             this.range.width = 0;
             this.range.height = 0 ;
@@ -42,7 +46,7 @@ export class Trainer extends NPC {
                 this.endBattle();
                 clientInstance.player.battle = false;
                 this.battle = false;
-            },2000)
+            },10000)
         },200)
         
     }
@@ -50,13 +54,14 @@ export class Trainer extends NPC {
     endBattle = () => {
         clientInstance.uiManager.setScreen(new Overlay())
         this.battle = false;
+        clientInstance.player.battle = false;
     }
 
     update = () => {
         if(!clientInstance.player) return
         if(this.battle) return;
         if (clientInstance.tick % 5 == 0) {
-            if(this.moving)
+            if(this.moving) //if npc is moving then cycle through spritesheet x frames
             this.xFrame = (this.xFrame + 1) % 4;
         }
 
@@ -80,7 +85,6 @@ export class Trainer extends NPC {
         //checks if player hitbox is inside the trainer attention box
         if((this.range.x >= clientInstance.player.hitbox.x && this.range.x <= clientInstance.player.hitbox.x+clientInstance.player.hitbox.width)&&
         (this.range.y >= -clientInstance.player.hitbox.y && this.range.y <= clientInstance.player.hitbox.y + clientInstance.player.hitbox.height)) {
-            console.log("inside")
             this.attentionDrawn = true;
         } else {
             this.attentionDrawn = false;
@@ -88,15 +92,16 @@ export class Trainer extends NPC {
     }
 
     draw =  () => {
+        //dont draw if in battle
         if(this.battle) return;
         this.checkForPlayer();
-        if(this.attentionDrawn) {
+        if(this.attentionDrawn) { //draws attention icon  when sees player
             clientInstance.canvas.ctx.drawImage(this.attentionIcon,this.x+clientInstance.player.getCenterX()+32,this.y+clientInstance.player.getCenterY() - 25,32,32)
         }
 
-        if(this.image)
+        if(this.image) 
         this.image.draw(this.xFrame*64,this.yFrame,64,64,this.x+clientInstance.player.getCenterX()+16,this.y+clientInstance.player.getCenterY(),64,64)
         // clientInstance.canvas.ctx.strokeRect(this.x+clientInstance.player.getCenterX()+32,this.y+clientInstance.player.getCenterY()+16,32,128)
-        clientInstance.canvas.ctx.strokeRect(this.range.x, this.range.y, this.range.width,this.range.height)
+        // clientInstance.canvas.ctx.strokeRect(this.range.x, this.range.y, this.range.width,this.range.height) //detection box range
     }
 }

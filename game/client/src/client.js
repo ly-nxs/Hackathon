@@ -6,6 +6,7 @@ import { MapList } from "./maps/mapList.js";
 import { MapManager2 } from "./maps/mapManager.js";
 import { EntityManager } from "./entityManager.js";
 import { QuestionManager } from "./questionmanager.js";
+import { BattleManager } from "./characters/battle/battlemanager.js";
 
 export class Client {
     init  = async () => {
@@ -18,6 +19,7 @@ export class Client {
         this.mapManager = new MapManager2();
         this.audioManager = new AudioManager();
         this.questionManager = new QuestionManager();
+        this.battleManager = new BattleManager();
         
         this.futileProFont = new FontFace("FutilePro", "url(./resources/fonts/FutilePro.ttf)");
         this.compassPro = new FontFace("CompassPro", "url(./resources/fonts/CompassPro.ttf)")
@@ -58,15 +60,18 @@ export class Client {
         this.mapManager.drawScreen();
         this.canvas.ctx.resetTransform();
         
-        this.entityManager.renderEntities();
-        if(this.player)
-        this.player.draw();
-
-        this.mapManager.drawSky();
+        if(this.player && !this.player.battle){
+            this.player.draw();
+            
+            this.entityManager.renderEntities();
+            this.player.updateRender();
+            this.mapManager.drawSky();
+        }
         this.uiManager.drawScreen();
-        if(this.player)
-        this.player.updateRender();
 
+        if(this.player && this.player.battle){
+            this.battleManager.drawUI();
+        }
         
         this.canvas.ctx.textBaseline = 'top';
         this.canvas.ctx.fillStyle='blue'
