@@ -1,17 +1,19 @@
-# Hackathon
+# 2024 TUHSD Hackathon
 
-An educational game designed to teach students math, science, and physics in an interactive and fun way.
+An educational game designed to teach students math, science, and physics in an interactive and fun way. Adventure through the world, fighting various enemies along the way.
 
 Try it out now at https://hackathon.jacob5257.com 
 
 To build it yourself:
 
 ```
-cd /path/to/Hackathon
+cd
+git clone https://github.com/ly-nxs/Hackathon.git
+cd Hackathon
 npm run dev
 --- in another terminal ---
-cd /path/to/Hackathon/game/server
+cd ~/Hackathon/game/server
 npm run dev
 ```
 
-Endpoints might fail on your machine due to cors errors, so use the link above for the best experience.
+*Note: `next.config.mjs` will need to be modified to accept cors requests if you build it yourself.*

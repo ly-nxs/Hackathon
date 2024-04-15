@@ -1,5 +1,6 @@
 import { Database } from 'sqlite3';
 
+// connect to the database
 export const db = new Database('./players.db', (err) => {
   if (err) {
     console.error(err.message);
@@ -7,6 +8,7 @@ export const db = new Database('./players.db', (err) => {
   console.log('Connected to the SQlite database.');
 });
 
+// create the player table if it doesn't exist already
 db.run(`CREATE TABLE IF NOT EXISTS players(
     id INTEGER PRIMARY KEY,
     name TEXT NOT NULL,

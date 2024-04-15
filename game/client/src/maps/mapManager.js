@@ -6,7 +6,7 @@ export let player;
 
 export class MapManager2 {
   constructor() {
-    this.currentMap = null;
+    this.currentMap = new GameMap("startingarea", null, null);
     this.currentNpcs = null;
     this.switching=false;
     this.duration = 500; // duration in milliseconds
@@ -36,8 +36,8 @@ export class MapManager2 {
 
     const coords = clientInstance.mapList.getMap(name).coords;
 
-    const npcs = clientInstance.mapList.getNpcs(name)
-    const trainer = clientInstance.mapList.getTrainer(name)
+    const npcs = clientInstance.mapList.getNpcs()
+    const trainers = clientInstance.mapList.getTrainers()
     
     this.currentMap = await new GameMap(name, coords, npcs);
     await this.currentMap.initTileMap(name);
@@ -45,15 +45,14 @@ export class MapManager2 {
     player = clientInstance.player;
     clientInstance.player.character.updatePosition(xLoad*32 || 19*32, yLoad*32 || 17*32);
     console.log(npcs)
-    // clientInstance.player = await new Player();
-    if(npcs)
-    for(const npc of npcs) {
-      clientInstance.entityManager.addNPC(npc.npc)
-
+    if(npcs) {
+      for (const [npcName, npc] of npcs.entries()) {
+        clientInstance.entityManager.addNPC(npc)
+      }
     }
-    if(trainer){
-      for(const trainer of trainers){
-        clientInstance.entityManager.addTrainer(trainer.trainer)
+    if(trainers){
+      for (const [trainerName, trainer] of trainers.entries()) {
+        clientInstance.entityManager.addTrainer(trainer)
       }
     }
     

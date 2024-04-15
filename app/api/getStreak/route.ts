@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
 import { db } from "../../dbSetup";
 
-export async function POST(req: Request){
+// function to get the player's streak from the database
+export async function POST(req: Request) {
     try {
+        // get vars from the request body
         const body = await req.json();
         const playerId = body.playerId;
 
@@ -17,12 +19,15 @@ export async function POST(req: Request){
             });
         });
 
+        // check to see if the id was found
         if (!row) {
             return NextResponse.json({ error: "Player not found" }, { status: 404 });
         }
 
+        // return the player's streak
         return NextResponse.json({ streak: row.streak });
     }
+    // catch errors
     catch (error) {
         console.log("API ERROR", error);
         return NextResponse.json({ error: "API ERROR" }, { status: 500 })

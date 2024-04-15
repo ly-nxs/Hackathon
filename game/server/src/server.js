@@ -1,38 +1,22 @@
 const http = require('http');
 const express = require('express');
-const socketio = require('socket.io');
 
+// create express server
 const app = express();
 
+// tell express where the client files are
 const clientPath = `${__dirname}/../../client`;
-console.log(`Serving static from ${clientPath}`);
-
 app.use(express.static(clientPath));
 
+// create the server
 const server = http.createServer(app);
 
-const io = socketio(server);
-
-const playerIds = [];
-let i = 0;
-
-io.on('connection', (sock) => {
-console.log("someone connected")
-sock.emit('message',"hello!")
-playerIds[i] = i;  //IP adresses?  How to save progress, SQL?
-sock.emit('id',playerIds[i])
-i++;
-sock.on('key', (key) => {
-console.log(key)
-})
-});
-
-
+// handle errors
 server.on('error', (err) => {
   console.error('Server error:', err);
 });
 
+// start the server listening on port 8080
 server.listen(8080, () => {
   console.log('started on 8080');
-  console.log('fdsa');
 });

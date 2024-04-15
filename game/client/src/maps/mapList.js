@@ -6,7 +6,7 @@ import { GameMap } from "./map.js";
 export class MapList {
     constructor() {
         this.maps = new Map();
-        this.npcs = new Map()
+        this.npcs = new Map();
         this.trainers = new Map();
         this.addAllMaps();
     }
@@ -23,8 +23,12 @@ export class MapList {
         this.npcs.set(name,data)
     }
     
-    getNpcs = (name) => {
+    getNpc = (name) => {
         return this.npcs.get(name)
+    }
+
+    getNpcs = () => {
+        return this.npcs;
     }
 
     addTrainer = (name,data) => {
@@ -35,11 +39,16 @@ export class MapList {
         return this.trainers.get(name)
     }
 
+    getTrainers = () => {
+        return this.trainers;
+    }
+
     addAllMaps = () => {
         //ALL THE MAPS THAT WE NEED TO ADD
         //LEFT TWO IS THE COORD WE TELEPORT FROM
         //RIGHT TWO IS THE COORD WE TELEPORT TO ON THE NEXT MAP
         //14 5 diff x y
+
 
         this.addMap("startingarea", [{next: "startinghouse", coords:[12,16,7,14]}, {next: "cavefit", coords:[28,8,2,7]}])
         this.addMap("startinghouse", [{next:"startingarea", coords:[6,15,12,18]}])
@@ -68,11 +77,9 @@ export class MapList {
 
         // this.addMap("generichouse", [{next: "town2", coords:[8,10,10,11]}])
         // this.addMap("town2house2", [{next: "town2", coords:[11,11,18,11]}])
-
-        // this.addMap("ruins", [{next: "town2", coords:[55,49,11,14]}, {next: "cave2", coords:[56,11,33,64]}, {next: "city3", coords:[11,49,11,51]}] )
-        // this.addMap("cave2", {next: "ruins", coords:[1,1,32,66]})
-        // this.addMap("city3", [{next: "ruins", coords:[12,12,12,24]}])
-        // this.addMap("bossroomsmallfit", [{next: "cave2", coords:[16,19,30,2]}])
+        this.addMap("ruins", [{next: "town2", coords:[55,49,11,14]}, {next: "cave2", coords:[56,11,33,64]}, {next: "city3", coords:[11,49,11,51]}] )
+        this.addMap("cave2", {next: "ruins", coords:[1,1,32,66]})
+        this.addMap("city3", [{next: "ruins", coords:[12,12,12,24]}])
 
         // this.addMap("startingareafit", [ {next: "startinghouse", coords: [10,9,7,14] },{next: "cavefit", coords: [42,8,3,7] }]);
         // this.addMap("startinghouse", [{next: "startingareafit", coords: [5,15,10,12]}]);
@@ -89,19 +96,14 @@ export class MapList {
 
         // this.addMap("bossroomsmallfit", [{next:"ruinsmallfit", coords:[16,19,30,2]}])
         // //console.log(this.maps, "MAPS")
+        // add new npcs and trainers here
+        this.addTrainer("startingarea", [{trainer: new Trainer("Billy.png",448,528,5,100,"startingarea",{x:448+32, y:528+16})}])
+        this.addTrainer("trainer2", [{trainer: new Trainer("Billy.png",748,416,10,100, "cavefit", {x:748+32, y:416+16})}])
+        this.addTrainer("trainer3", [{trainer: new Trainer("Billy.png",600, 1500, 25, 100, "town2", {x:600+32, y:1500+16})}])
+        this.addTrainer("trainer4", [{trainer: new Trainer("Billy.png",286, 1712, 50, 100, "ruins", {x:286+32, y:1712+16})}])
+        this.addTrainer("trainer5", [{trainer: new Trainer("boss.png",1378, 774, 250, 100, "cave2", {x:1378+32, y:774+16})}])
+        this.addTrainer("trainer6", [{trainer: new Trainer("boss.png",600, 600, 250, 100, "city3", {x:600+32, y:600+16})}])
 
-        // // this.addNpcs("startingarea", [{npc: new NPC("Billy.png", 448,528)}])
-        // this.addNpcs("startingarea", [{npc: trainer}])
-        
-        // this.addNpcs("startinghouse", [{npc: new NPC("Billy", ["woodsword", "woodarmor"], "These will help you become a hero", {x:448-16,y:320}, 150)}])
-        // this.addNpcs("generichouse", [{npc: new NPC("Shop", ["small", "big"], "Take these they will help you", {x:320-16,y:7*32}, 90) }])
-        // this.addNpcs("town2house2", [{npc:new NPC("96", ["ironarmor", "ironsword"], "If you're adventuring further take these",{x:4*32-16,y:6*32}, 140)}])
 
-        
-
-        
-    }
-    
+    }   
 }
-
-export const trainer = new Trainer("Billy.png",448,528,5,100,{x:448+32, y:528+16})

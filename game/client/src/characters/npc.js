@@ -2,10 +2,11 @@ import { IImage } from "../IImage.js";
 import { clientInstance } from "../main.js";
 
 export class NPC {
-    constructor(img,x,y) {
+    constructor(img, x, y, level) {
         this.image = new IImage(img)
         this.x = x;
         this.y = y;
+        this.level = level;
 
         this.xVel = 0;
         this.yVel = 0;
@@ -69,8 +70,7 @@ export class NPC {
     }
 
     draw = () => {        
-        if(this.image)
-        this.image.draw(this.xFrame*64,this.yFrame,64,64,this.x+clientInstance.player.getCenterX()+16,this.y+clientInstance.player.getCenterY(),64,64)
+        this.image.draw(this.xFrame * 64,this.yFrame, 64, 64, this.x + clientInstance.player.getCenterX() + 16, this.y + clientInstance.player.getCenterY(), 64, 64)
     }
 
 }

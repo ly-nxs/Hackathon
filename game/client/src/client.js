@@ -9,7 +9,6 @@ import { QuestionManager } from "./questionmanager.js";
 
 export class Client {
     init  = async () => {
-        this.sock = io();
         this.entityManager = new EntityManager();
         this.listeners = new Listeners();
         this.canvas = new Canvas();
@@ -72,13 +71,6 @@ export class Client {
         this.canvas.ctx.fillStyle='blue'
         this.canvas.ctx.font = "24px FutilePro"
         this.canvas.ctx.fillText(this.fps, 32, 8)
-
-        if(this.player)
-        this.canvas.ctx.strokeRect(((Math.floor(this.listeners.mouseX/32)*32)) + window.innerWidth/2 - this.player.character.x-32,
-        (Math.floor(this.listeners.mouseY/32)*32) + window.innerHeight/2 - this.player.character.y-32
-        ,32,32)
-        if(this.player)
-        this.canvas.ctx.fillText(Math.floor(this.listeners.mouseX/32) + " " + Math.floor(this.listeners.mouseY/32), this.listeners.mouseX-50, this.listeners.mouseY-60)
 
         requestAnimationFrame(this.renderLoop)
     }
