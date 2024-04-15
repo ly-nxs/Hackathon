@@ -9,7 +9,6 @@ import { QuestionManager } from "./questionmanager.js";
 
 export class Client {
     init  = async () => {
-        this.sock = io();
         this.entityManager = new EntityManager();
         this.listeners = new Listeners();
         this.canvas = new Canvas();

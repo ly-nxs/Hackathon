@@ -35,6 +35,10 @@ export class MapList {
         return this.trainers.get(name)
     }
 
+    getTrainers = () => {
+        return this.trainers;
+    }
+
     addAllMaps = () => {
         //ALL THE MAPS THAT WE NEED TO ADD
         //LEFT TWO IS THE COORD WE TELEPORT FROM
@@ -73,17 +77,11 @@ export class MapList {
         //console.log(this.maps, "MAPS")
 
         // this.addNpcs("startingarea", [{npc: new NPC("Billy.png", 448,528)}])
-        this.addNpcs("startingarea", [{npc: trainer}])
+        this.addTrainer("startingarea", [{trainer: new Trainer("Billy.png",448,528,5,100,{x:448+32, y:528+16})}])
+        this.addTrainer("startingarea2", [{trainer: new Trainer("boss.png",500,528,10,100,{x:500+32, y:528+16})}])
         
         // this.addNpcs("startinghouse", [{npc: new NPC("Billy", ["woodsword", "woodarmor"], "These will help you become a hero", {x:448-16,y:320}, 150)}])
         // this.addNpcs("generichouse", [{npc: new NPC("Shop", ["small", "big"], "Take these they will help you", {x:320-16,y:7*32}, 90) }])
-        // this.addNpcs("town2house2", [{npc:new NPC("96", ["ironarmor", "ironsword"], "If you're adventuring further take these",{x:4*32-16,y:6*32}, 140)}])
-
-        
-
-        
-    }
-    
+        // this.addNpcs("town2house2", [{npc:new NPC("96", ["ironarmor", "ironsword"], "If you're adventuring further take these",{x:4*32-16,y:6*32}, 140)}])   
+    }   
 }
-
-export const trainer = new Trainer("Billy.png",448,528,5,100,{x:448+32, y:528+16})

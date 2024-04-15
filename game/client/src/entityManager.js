@@ -7,7 +7,9 @@ export class EntityManager {
         this.trainers = []
     }
 
-    
+    addTrainer(trainer) {
+        this.trainers.push(trainer)
+    }
  
     addNPC(npc) {
         this.npcs.push(npc);
@@ -26,6 +28,10 @@ export class EntityManager {
             npc.update();
         }
         
+        for (const trainer of this.trainers) {
+            if (trainer) trainer[0].trainer.update();
+            else console.log("trainer is null")
+        }
     }
 
     renderEntities() {
@@ -35,10 +41,13 @@ export class EntityManager {
         }
         
         
-        for(const npc of this.npcs) {
+        for (const npc of this.npcs) {
             npc.draw();
         }
-       
-    }
 
+        for (const trainer of this.trainers) {
+            if (trainer) trainer[0].trainer.draw();
+            else console.log("trainer is null")
+        }       
+    }
 }

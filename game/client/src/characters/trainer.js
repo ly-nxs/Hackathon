@@ -39,13 +39,13 @@ export class Trainer extends NPC {
     }
 
     endBattle = () => {
-        clientInstance.uiManager.setScreen(new Overlay())
+        clientInstance.uiManager.setScreen(new Overlay());
         this.battle = false;
         this.canBattle = false;
     }
 
     update = () => {
-        if(!clientInstance.player) return
+        //if(!clientInstance.player) return
         if(this.battle) return;
         if (clientInstance.tick % 5 == 0) {
             if(this.moving)
@@ -64,8 +64,7 @@ export class Trainer extends NPC {
         this.range.x = this.x + +30;
         this.range.y = this.y + +16;
 
-        if(this.attentionDrawn)
-        this.startBattle();
+        if(this.attentionDrawn) this.startBattle();
     }
 
     checkForPlayer = () => {
@@ -73,7 +72,7 @@ export class Trainer extends NPC {
         //checks if player hitbox is inside the trainer attention box
         if((this.range.x >= clientInstance.player.hitbox.x && this.range.x <= clientInstance.player.hitbox.x+clientInstance.player.hitbox.width)&&
         (this.range.y >= -clientInstance.player.hitbox.y && this.range.y <= clientInstance.player.hitbox.y + clientInstance.player.hitbox.height)) {
-            console.log("inside")
+            localStorage.setItem("enemyHealth", this.health)
             this.attentionDrawn = true;
         } else {
             this.attentionDrawn = false;
@@ -81,14 +80,12 @@ export class Trainer extends NPC {
     }
 
     draw = () => {
-        if(this.battle) return;
         this.checkForPlayer();
         if(this.attentionDrawn) {
             clientInstance.canvas.ctx.drawImage(this.attentionIcon,this.x+clientInstance.player.getCenterX()+32,this.y+clientInstance.player.getCenterY() - 25,32,32)
         }
 
-        if(this.image)
-        this.image.draw(this.xFrame*64,this.yFrame,64,64,this.x+clientInstance.player.getCenterX()+16,this.y+clientInstance.player.getCenterY(),64,64)
+        if (this.image) this.image.draw(this.xFrame*64,this.yFrame,64,64,this.x+clientInstance.player.getCenterX()+16,this.y+clientInstance.player.getCenterY(),64,64)
         // clientInstance.canvas.ctx.strokeRect(this.x+clientInstance.player.getCenterX()+32,this.y+clientInstance.player.getCenterY()+16,32,128)
         clientInstance.canvas.ctx.strokeRect(this.range.x, this.range.y, this.range.width,this.range.height)
     }

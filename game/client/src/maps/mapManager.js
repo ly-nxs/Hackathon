@@ -37,7 +37,7 @@ export class MapManager2 {
     const coords = clientInstance.mapList.getMap(name).coords;
 
     const npcs = clientInstance.mapList.getNpcs(name)
-    const trainer = clientInstance.mapList.getTrainer(name)
+    const trainers = clientInstance.mapList.getTrainers()
     
     this.currentMap = await new GameMap(name, coords, npcs);
     await this.currentMap.initTileMap(name);
@@ -45,15 +45,14 @@ export class MapManager2 {
     player = clientInstance.player;
     clientInstance.player.character.updatePosition(xLoad*32 || 19*32, yLoad*32 || 17*32);
     console.log(npcs)
-    // clientInstance.player = await new Player();
-    if(npcs)
-    for(const npc of npcs) {
-      clientInstance.entityManager.addNPC(npc.npc)
-
+    if(npcs) {
+      for(const npc of npcs) {
+        clientInstance.entityManager.addNPC(npc.npc)
+      }
     }
-    if(trainer){
-      for(const trainer of trainers){
-        clientInstance.entityManager.addTrainer(trainer.trainer)
+    if(trainers){
+      for (const [trainerName, trainer] of trainers.entries()) {
+        clientInstance.entityManager.addTrainer(trainer)
       }
     }
     
