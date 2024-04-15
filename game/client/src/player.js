@@ -167,10 +167,10 @@ export class Player {
 
     updateKeyPress = () => {
         const keys = [
-            { key: "w", up: () => (this.yVel -= 1) },
-            { key: "s", up: () => (this.yVel += 1) },
-            { key: "a", up: () => (this.xVel -= 1) },
-            { key: "d", up: () => (this.xVel += 1) },
+            { key: "w", up: () => (this.yVel -= 2) },
+            { key: "s", up: () => (this.yVel += 2) },
+            { key: "a", up: () => (this.xVel -= 2) },
+            { key: "d", up: () => (this.xVel += 2) },
         ];
 
         for (const key of keys) {

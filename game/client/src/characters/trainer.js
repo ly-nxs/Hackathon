@@ -37,7 +37,7 @@ export class Trainer extends NPC {
 
         setTimeout(() => {
             clientInstance.battleManager.startBattle();
-            clientInstance.battleManager.init(clientInstance.player.img,this.img)
+            clientInstance.battleManager.init(clientInstance.player.img,this.imageName)
             // clientInstance.uiManager.setScreen(new BattleScreeen());
             this.battle = true;
             this.range.width = 0;
