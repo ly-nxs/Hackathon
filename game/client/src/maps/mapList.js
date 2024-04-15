@@ -6,7 +6,7 @@ import { GameMap } from "./map.js";
 export class MapList {
     constructor() {
         this.maps = new Map();
-        this.npcs = new Map()
+        this.npcs = new Map();
         this.trainers = new Map();
         this.addAllMaps();
     }
@@ -23,8 +23,12 @@ export class MapList {
         this.npcs.set(name,data)
     }
     
-    getNpcs = (name) => {
+    getNpc = (name) => {
         return this.npcs.get(name)
+    }
+
+    getNpcs = () => {
+        return this.npcs;
     }
 
     addTrainer = (name,data) => {
@@ -76,7 +80,9 @@ export class MapList {
         this.addMap("bossroomsmallfit", [{next:"ruinsmallfit", coords:[16,19,30,2]}])
         //console.log(this.maps, "MAPS")
 
-        // this.addNpcs("startingarea", [{npc: new NPC("Billy.png", 448,528)}])
+        // add new npcs and trainers here
+        this.addNpcs("startingareanpc", [{npc: new NPC("Billy.png", 550,528)}])
+        this.addNpcs("startingareanpc2", [{npc: new NPC("Billy.png", 600,528)}])
         this.addTrainer("startingarea", [{trainer: new Trainer("Billy.png",448,528,5,100,{x:448+32, y:528+16})}])
         this.addTrainer("startingarea2", [{trainer: new Trainer("boss.png",500,528,10,100,{x:500+32, y:528+16})}])
         

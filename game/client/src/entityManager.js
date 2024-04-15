@@ -24,8 +24,9 @@ export class EntityManager {
             entity.update();
         }
 
-        for(const npc of this.npcs){
-            npc.update();
+        for (const npc of this.npcs) {
+            if (npc) npc[0].npc.update();
+            else console.log("npc is null")
         }
         
         for (const trainer of this.trainers) {
@@ -42,8 +43,9 @@ export class EntityManager {
         
         
         for (const npc of this.npcs) {
-            npc.draw();
-        }
+            if (npc) npc[0].npc.draw();
+            else console.log("npc is null")
+        }  
 
         for (const trainer of this.trainers) {
             if (trainer) trainer[0].trainer.draw();
