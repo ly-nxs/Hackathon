@@ -2,10 +2,11 @@ import { IImage } from "../IImage.js";
 import { clientInstance } from "../main.js";
 
 export class NPC {
-    constructor(img,x,y) {
+    constructor(img, x, y, level) {
         this.image = new IImage(img)
         this.x = x;
         this.y = y;
+        this.level = level;
 
         this.xVel = 0;
         this.yVel = 0;

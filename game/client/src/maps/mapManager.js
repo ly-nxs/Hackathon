@@ -6,7 +6,7 @@ export let player;
 
 export class MapManager2 {
   constructor() {
-    this.currentMap = null;
+    this.currentMap = new GameMap("startingarea", null, null);
     this.currentNpcs = null;
     this.switching=false;
     this.duration = 500; // duration in milliseconds
@@ -46,7 +46,6 @@ export class MapManager2 {
     clientInstance.player.character.updatePosition(xLoad*32 || 19*32, yLoad*32 || 17*32);
     console.log(npcs)
     if(npcs) {
-      console.log(npcs)
       for (const [npcName, npc] of npcs.entries()) {
         clientInstance.entityManager.addNPC(npc)
       }

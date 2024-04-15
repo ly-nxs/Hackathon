@@ -36,6 +36,7 @@ export class EntityManager {
     }
 
     renderEntities() {
+        const world = clientInstance.mapManager.currentMap.name;
         for (const entity of this.entities) {
             //console.log(entity)
             entity.render();
@@ -43,13 +44,11 @@ export class EntityManager {
         
         
         for (const npc of this.npcs) {
-            if (npc) npc[0].npc.draw();
-            else console.log("npc is null")
+            if (npc[0].npc.level == world) npc[0].npc.draw();
         }  
 
         for (const trainer of this.trainers) {
-            if (trainer) trainer[0].trainer.draw();
-            else console.log("trainer is null")
+            if (trainer[0].trainer.level == world) trainer[0].trainer.draw();
         }       
     }
 }

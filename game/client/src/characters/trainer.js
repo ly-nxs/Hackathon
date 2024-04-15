@@ -5,9 +5,10 @@ import { BattleScreeen } from "../ui/screens/battle.js";
 import { Overlay } from "../ui/screens/overlay.js";
 
 export class Trainer extends NPC {
-    constructor(img, x, y, health, exp) {
-        super(img,x,y);
+    constructor(img, x, y, health, exp, level) {
+        super(img, x, y, level);
 
+        
         this.health = health;
         this.exp = exp;
         this.init();
@@ -86,7 +87,5 @@ export class Trainer extends NPC {
         }
 
         if (this.image) this.image.draw(this.xFrame*64,this.yFrame,64,64,this.x+clientInstance.player.getCenterX()+16,this.y+clientInstance.player.getCenterY(),64,64)
-        // clientInstance.canvas.ctx.strokeRect(this.x+clientInstance.player.getCenterX()+32,this.y+clientInstance.player.getCenterY()+16,32,128)
-        clientInstance.canvas.ctx.strokeRect(this.range.x, this.range.y, this.range.width,this.range.height)
     }
 }

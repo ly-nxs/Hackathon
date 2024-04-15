@@ -149,7 +149,6 @@ export class Player {
         // this.character.draw(x, y);
         this.character.draw(x, y,window.innerWidth/2-32,window.innerHeight/2-32);
         const ctx = clientInstance.canvas.ctx;
-        clientInstance.canvas.ctx.strokeRect(this.hitbox.x,this.hitbox.y,this.hitbox.width,this.hitbox.height)
         clientInstance.canvas.ctx.restore();
     };
 
@@ -165,10 +164,10 @@ export class Player {
 
     updateKeyPress = () => {
         const keys = [
-            { key: "w", up: () => (this.yVel -= 1) },
-            { key: "s", up: () => (this.yVel += 1) },
-            { key: "a", up: () => (this.xVel -= 1) },
-            { key: "d", up: () => (this.xVel += 1) },
+            { key: "w", up: () => (this.yVel -= 2) },
+            { key: "s", up: () => (this.yVel += 2) },
+            { key: "a", up: () => (this.xVel -= 2) },
+            { key: "d", up: () => (this.xVel += 2) },
         ];
 
         for (const key of keys) {
@@ -176,6 +175,7 @@ export class Player {
                 key.up();
             }
         }
+        console.log(clientInstance.mapManager.currentMap.name)
     };
 
     
@@ -221,6 +221,7 @@ export class Player {
         };
 
         this.character.updatePosition(newPosition.x, newPosition.y);
+        console.log(this.character.x, this.character.y, "X AND Y")
 
         // Reset velocity to 0 after each update
         this.xVel = 0;
